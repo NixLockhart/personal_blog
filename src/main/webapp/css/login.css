@@ -1,0 +1,720 @@
+/**
+ * 登录页面专用样式文件
+ *
+ * 功能说明：
+ * - 登录页面的完整样式定义
+ * - 包含认证容器、表单、导航栏等组件样式
+ * - 响应式设计适配移动端和桌面端
+ * - 登录方式选择器的交互效果
+ * - 表单动画和过渡效果优化
+ *
+ * 作者：Nix
+ * 创建时间：2025
+ * 最后更新：2025-06-07
+ */
+
+/* ========================================
+   1. 页面基础样式
+   ======================================== */
+.login-page {
+    background-color: #f0f0f0;
+    padding-top: 60px;
+}
+
+/* ========================================
+   2. 认证容器样式
+   ======================================== */
+
+/**
+ * 主认证容器
+ * - 使用flex布局居中显示认证卡片
+ * - 设置最小高度确保全屏显示
+ * - 相对定位用于背景图片定位
+ */
+.auth-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 60px;
+    position: relative;
+    min-height: calc(100vh - 60px);
+}
+
+/**
+ * 认证容器背景图片
+ * - 使用伪元素创建模糊背景效果
+ * - 固定背景附着，防止滚动时移动
+ * - 应用模糊滤镜增强视觉效果
+ */
+.auth-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/background/login_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(1.5px);
+    z-index: -1;
+}
+
+/**
+ * 登录页面特定的容器样式覆盖
+ * - 移除顶部外边距，因为页面已有padding-top
+ * - 调整最小高度适应导航栏
+ */
+.login-page .auth-container {
+    margin-top: 0;
+    min-height: calc(100vh - 60px);
+}
+
+/**
+ * 登录页面背景图片固定定位
+ * - 解决移动端滚动时的背景问题
+ */
+.login-page .auth-container::before {
+    position: fixed;
+}
+
+/* ========================================
+   3. 认证卡片样式
+   ======================================== */
+
+/**
+ * 主认证卡片容器
+ * - 半透明背景配合毛玻璃效果
+ * - 圆角设计增强现代感
+ * - 响应式宽度适配不同屏幕
+ * - 阴影和边框增强层次感
+ */
+.auth-card {
+    background: rgba(240, 240, 240, 0.5);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/**
+ * 认证页面标题
+ * - 居中显示，突出页面主题
+ * - 使用主题色彩变量保持一致性
+ */
+.auth-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    font-size: 1.8em;
+}
+
+/* ========================================
+   4. 表单基础样式
+   ======================================== */
+/**
+ * 登录表单容器
+ * - 垂直flex布局，统一间距
+ * - 为表单元素提供整体结构
+ */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/**
+ * 表单组容器
+ * - 垂直排列标签和输入框
+ * - 统一的间距设计
+ */
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/**
+ * 表单标签样式
+ * - 使用主题色彩保持一致性
+ * - 加粗字体增强可读性
+ */
+.login-form .form-group label {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/**
+ * 表单输入框样式
+ * - 圆角设计配合整体风格
+ * - 透明边框，聚焦时显示主题色
+ * - 平滑过渡动画增强交互体验
+ */
+.login-form .form-group input {
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: var(--secondary-color);
+    color: var(--text-primary);
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--card-shadow);
+}
+
+/**
+ * 输入框聚焦状态
+ * - 显示主题色边框
+ * - 增强阴影效果提供视觉反馈
+ */
+.login-form .form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--hover-shadow);
+}
+
+/* ========================================
+   5. 切换表单样式
+   ======================================== */
+/**
+ * 切换表单链接容器
+ * - 居中显示切换链接
+ * - 与表单保持适当间距
+ */
+.toggle-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/**
+ * 切换表单链接样式
+ * - 使用主题色彩
+ * - 平滑的颜色过渡动画
+ */
+.toggle-form a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-speed) ease;
+}
+
+/**
+ * 切换表单链接悬停效果
+ */
+.toggle-form a:hover {
+    color: var(--accent-color);
+}
+
+/* ========================================
+   6. 错误消息和状态样式
+   ======================================== */
+
+/**
+ * 错误消息显示样式
+ * - 默认隐藏，错误时显示
+ * - 使用错误主题色突出显示
+ * - 居中显示增强可读性
+ */
+.error-message {
+    display: none;
+    background-color: var(--error-color);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/**
+ * 注册表单默认隐藏
+ * - 通过JavaScript控制显示/隐藏
+ */
+#registerForm {
+    display: none;
+}
+
+/* ========================================
+   7. 认证链接样式
+   ======================================== */
+/**
+ * 认证页面底部链接容器
+ * - 两端对齐布局
+ * - 较小字体大小节省空间
+ */
+.auth-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+/**
+ * 认证链接基础样式
+ * - 使用主题强调色
+ * - 图标和文字对齐显示
+ * - 平滑的颜色过渡效果
+ */
+.auth-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/**
+ * 认证链接悬停效果
+ */
+.auth-links a:hover {
+    color: var(--accent-light);
+    text-decoration: underline;
+}
+
+/**
+ * 忘记密码链接特殊样式
+ * - 使用次要文字颜色降低视觉权重
+ */
+.auth-links .forgot-password-link {
+    color: var(--text-secondary);
+}
+
+/**
+ * 忘记密码链接悬停效果
+ */
+.auth-links .forgot-password-link:hover {
+    color: var(--accent-color);
+}
+
+/* ========================================
+   8. 登录导航栏样式
+   ======================================== */
+/**
+ * 登录页面专用导航栏
+ * - 半透明背景不遮挡背景图片
+ */
+.login-page .navbar-login {
+    background-color: rgba(248, 249, 250, 0.85);
+}
+
+/**
+ * 导航栏容器
+ * - 限制最大宽度保持内容居中
+ * - flex布局实现两端对齐
+ * - 响应式内边距适配不同屏幕
+ */
+.navbar-login .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/**
+ * 导航栏品牌标识
+ * - 水平排列logo和文字
+ * - 使用主题色彩保持一致性
+ */
+.navbar-login .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+/**
+ * 品牌logo图片
+ * - 固定高度，宽度自适应
+ * - 保持图片比例不变形
+ */
+.navbar-login .brand-logo,
+.navbar-login .brand-logo-lut {
+    height: 40px;
+    width: auto;
+}
+
+/**
+ * 品牌分隔符
+ * - 使用次要文字颜色
+ * - 适中的字体大小
+ */
+.navbar-login .brand-separator {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+/**
+ * 品牌组容器
+ * - 左对齐显示品牌元素
+ * - 自适应宽度
+ */
+.navbar-login .nav-brand-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+}
+
+/* ========================================
+   9. 登录方式选择器样式
+   ======================================== */
+
+/**
+ * 登录方式选择器容器
+ * - 水平排列选项，支持换行
+ * - 统一的间距设计
+ * - 与表单标签保持适当距离
+ */
+.login-type-selector {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+/**
+ * 单选按钮选项样式
+ * - 模拟按钮外观的单选框
+ * - 等宽布局，居中显示文字
+ * - 边框和背景色过渡动画
+ * - 鼠标悬停时的视觉反馈
+ */
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: #fff;
+    flex: 1;
+    justify-content: center;
+}
+
+/**
+ * 单选按钮悬停效果
+ * - 边框变为主题色
+ * - 背景色轻微变化提供反馈
+ */
+.radio-option:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+/**
+ * 隐藏原生单选按钮
+ * - 使用自定义样式替代原生控件
+ */
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+/**
+ * 选中状态的文字样式
+ * - 使用主题色突出显示
+ * - 加粗字体增强视觉效果
+ */
+.radio-option input[type="radio"]:checked + span {
+    color: #667eea;
+    font-weight: 500;
+}
+
+/**
+ * 选中状态的容器样式
+ * - 使用:has()伪类选择器
+ * - 与悬停效果保持一致
+ */
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+/**
+ * 选项文字基础样式
+ * - 适中的字体大小
+ * - 默认的文字颜色
+ * - 平滑的颜色过渡
+ */
+.radio-option span {
+    font-size: 14px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+/* ========================================
+   10. 响应式设计
+   ======================================== */
+
+/**
+ * 平板设备适配 (最大宽度: 768px)
+ * - 调整布局适应中等屏幕
+ * - 优化间距和字体大小
+ * - 导航栏响应式布局
+ * - 登录方式选择器垂直排列
+ */
+@media (max-width: 768px) {
+    .login-page {
+        padding-top: 60px;
+    }
+
+    .login-page .auth-container {
+        margin-top: 0;
+        padding: 15px;
+        min-height: calc(100vh - 60px);
+    }
+
+    .login-page .auth-card {
+        padding: 20px;
+        top: 0;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .login-page .auth-title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .login-page .form-group {
+        margin-bottom: 15px;
+    }
+
+    .login-page .form-group input {
+        padding: 10px;
+    }
+
+    .login-page .btn {
+        padding: 10px;
+    }
+
+    .navbar-login {
+        height: auto;
+        min-height: 60px;
+        padding: 5px 0;
+    }
+
+    .navbar-login .container {
+        padding: 0 15px;
+        justify-content: center;
+    }
+
+    .navbar-login .nav-brand-group {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-login .nav-brand {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .navbar-login .brand-logo,
+    .navbar-login .brand-logo-lut {
+        height: 32px;
+    }
+
+    .navbar-login .brand-separator {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .login-page .auth-container {
+        margin-top: 70px;
+        padding: 15px 10px;
+    }
+
+    .login-type-selector {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .radio-option {
+        min-width: auto;
+        width: 100%;
+        flex: none;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    /* 确保登录方式选择器不超出父容器 */
+    .login-form .form-group .login-type-selector {
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
+/**
+ * 手机设备适配 (最大宽度: 480px)
+ * - 进一步压缩间距适应小屏幕
+ * - 减小字体和图标尺寸
+ * - 导航栏垂直布局
+ * - 最大化可用空间
+ */
+@media (max-width: 480px) {
+    .login-page .auth-container {
+        padding: 10px;
+    }
+
+    .login-page .auth-card {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .login-page .auth-title {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .login-page .form-group {
+        margin-bottom: 12px;
+    }
+
+    .login-page .form-group label {
+        margin-bottom: 5px;
+    }
+
+    .login-page .form-group input {
+        padding: 8px 10px;
+    }
+
+    .navbar-login {
+        min-height: 70px;
+    }
+
+    .navbar-login .nav-brand {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .navbar-login .brand-logo-lut,
+    .navbar-login .brand-logo {
+        height: 28px;
+    }
+
+    .navbar-login .brand-separator {
+        font-size: 12px;
+        margin: 2px 0;
+    }
+
+    .login-page .auth-container {
+        margin-top: 80px;
+    }
+}
+
+/* ========================================
+   11. 表单动画效果优化
+   ======================================== */
+/**
+ * 表单组基础动画
+ * - 透明度过渡减少切换时的闪烁
+ * - 保持元素的可见性状态
+ */
+.form-group {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+/**
+ * 隐藏状态的表单组
+ * - 透明度为0但保持布局
+ * - 禁用鼠标事件避免误操作
+ */
+.form-group[style*="display: none"] {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/**
+ * 显示状态的表单组
+ * - 完全可见和可交互
+ */
+.form-group:not([style*="display: none"]) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/**
+ * 强制保持表单组的flex布局
+ * - 确保布局一致性
+ * - 防止JavaScript修改时的样式冲突
+ */
+.login-form .form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+/**
+ * 完全隐藏的表单组
+ * - 使用display: none完全移除
+ */
+.login-form .form-group[style*="display: none"] {
+    display: none !important;
+}
+
+/* ========================================
+   12. 特殊组件样式优化
+   ======================================== */
+
+/**
+ * 验证码输入框按钮优化
+ * - 防止文字换行
+ * - 适中的字体大小
+ */
+#loginVerificationCodeGroup .btn {
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+/**
+ * 登录按钮增强样式
+ * - 渐变背景增强视觉效果
+ * - 字母间距提升质感
+ * - 平滑的过渡动画
+ */
+.login-form .btn[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 12px 24px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+/**
+ * 登录按钮悬停效果
+ * - 轻微上移增强交互感
+ * - 阴影效果提供深度感
+ */
+.login-form .btn[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/**
+ * 登录按钮点击效果
+ * - 恢复原始位置提供按下反馈
+ */
+.login-form .btn[type="submit"]:active {
+    transform: translateY(0);
+}
