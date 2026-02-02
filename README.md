@@ -359,7 +359,8 @@ A: 修改 `webapp/css/` 目录下的样式文件，或创建新的主题文件�
 
 ## 🔗 相关链接
 
-- 📺 [项目演示视频（还没录）]()
+- [项目演示视频](https://www.bilibili.com/video/BV1zYTvzAE1Q/?share_source=copy_web&vd_source=bdbb23e4d68b3e804d3a287d862fe035)
+- [项目部署教程](https://www.bilibili.com/video/BV1xsM3z5EaD/?share_source=copy_web&vd_source=bdbb23e4d68b3e804d3a287d862fe035)
 
 ## 📄 许可证
 
@@ -367,13 +368,11 @@ A: 修改 `webapp/css/` 目录下的样式文件，或创建新的主题文件�
 
 ## 📞 联系方式
 
-- **项目维护者**：[Nix Lockhart](mailto:18293516327@163.com)
+- **项目维护者**：[Nix Lockhart](mailto:nixlockhart@163.com)
 - **项目主页**：[https://github.com/NixLockhart/personal_blog](https://github.com/NixLockhart/personal_blog)
 - **问题反馈**：[Issues](https://github.com/NixLockhart/personal_blog/issues)
-- **在线演示**：[NixStudio](http://nixstudio.cn)
+- **在线演示**：[NixStudio(现在是2.0了)](http://nixstudio.cn)
 
 ---
 
 ⭐ 如果这个项目对您有帮助，请给我一个 Star！
-
-📢 欢迎关注项目更新，获取最新功能和修复！
